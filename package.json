@@ -1,0 +1,35 @@
+{ "name": "string-or-buffer-contains-all-in-order-pmb",
+  "version": "0.0.0",
+  "description": "Check whether your string or buffer contains all the expected slices in correct order. Useful for checking wildcard patterns.",
+  "keywords": [
+    "buffer",
+    "contains",
+    "string",
+    "wildcard"
+  ],
+
+  "author": "M.K. (https://github.com/mk-pmb)",
+  "homepage": "https://github.com/mk-pmb/string-or-buffer-contains-all-in-order-pmb-js/#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mk-pmb/string-or-buffer-contains-all-in-order-pmb-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mk-pmb/string-or-buffer-contains-all-in-order-pmb-js/issues"
+  },
+  "contributors": [],
+
+  "private": false, "license": "ISC",
+
+  "main": "index.mjs",
+  "scripts": { "test": "elp && nodejs test/all.mjs" },
+  "directories": { "test": "test" },
+  "eslintConfig": { "extends": "nodejs-pmb" },
+
+  "dependencies": {},
+  "devDependencies": {
+  },
+
+
+  "engines": { "npm": ">=7.0.0", "node": ">=24.0.0" }
+}
