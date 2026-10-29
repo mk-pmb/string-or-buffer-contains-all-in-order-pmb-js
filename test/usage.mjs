@@ -130,20 +130,22 @@ capture(gz, [zeroBuf, emptyBuf], aE, true, [
 ]);
 
 
-const rwc = caio.readWildcards;
-eq(rwc(hw, ['Hel', 'lo w', 'or', 'ld!']), ['', '', '']);
-eq(rwc(hw, ['Hel', 'or', 'ld!']), ['lo w', '']);
-eq(rwc(hw, ['Hel', 'lo w', 'ld!']), ['', 'or']);
-eq(rwc(hw, ['hel', 'lo w', 'ld!']), false);
-eq(rwc(hw, ['llo']), false);  // didn't match because rwc is anchored=both
-eq(rwc(hw, ['Llo']), false);  // case mismatch
-eq(rwc(hw, ['lo w']), false); // both anchors
-eq(rwc(hw, ['low']), false);  // both anchors
-eq(rwc(hw, ['ello', 'lo w']), false); // both anchors
-eq(rwc(hw, ['', 'lo w']), false); // end anchor
-eq(rwc(hw, ['', 'lo w', '']), ['Hel', 'orld!']);
-eq(rwc(hw, ['lo w', '']), false); // start anchor
-eq(rwc(hw, ['', '', '']), ['', hw]);
+function rwc(mask) { return caio.readWildcards(hw, mask.split('*')); }
+eq(rwc('Hel*lo w*or*ld!'), ['', '', '']);
+eq(rwc('Hel*or*ld!'), ['lo w', '']);
+eq(rwc('Hel*lo w*ld!'), ['', 'or']);
+eq(rwc('Hel*lo w***ld!*'), ['', '', '', 'or', '']);
+eq(rwc('hel*lo w*ld!'), false);
+eq(rwc('llo'), false);  // didn't match because rwc is anchored=both
+eq(rwc('Llo'), false);  // case mismatch
+eq(rwc('lo w'), false); // both anchors
+eq(rwc('low'), false);  // both anchors
+eq(rwc('ello*lo w'), false);  // both anchors
+eq(rwc('*lo w'), false);  // end anchor
+eq(rwc('*lo w*'), ['Hel', 'orld!']);
+eq(rwc('lo w*'), false);  // start anchor
+eq(rwc('**'), ['', hw]);
+eq(rwc('***'), ['', '', hw]);
 
 
 
