@@ -1,5 +1,5 @@
 { "name": "string-or-buffer-contains-all-in-order-pmb",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Check whether your string or buffer contains all the expected slices in correct order. Useful for checking wildcard patterns.",
   "keywords": [
     "buffer",

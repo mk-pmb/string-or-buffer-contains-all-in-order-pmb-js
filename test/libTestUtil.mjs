@@ -2,6 +2,12 @@
 
 import zlib from 'node:zlib';
 
+import eq from 'equal-pmb';
+
+import caio from '../index.mjs';
+
+caio.setVerbose(+process.env.DEBUGLEVEL >= 2);
+
 
 const tu = {
 
@@ -20,7 +26,24 @@ const tu = {
     return b.toString('hex').replace(/(\S{8})(?!$)/g, '$1 ');
   },
 
+  capture(hay, needles, opt, expectedResult, expectedCapture) {
+    const { store } = tu.capture;
+    const actualResult = caio(hay, needles, { captureIndexes: store, ...opt });
+    eq(!!actualResult, expectedResult);
+    if (actualResult) {
+      eq(actualResult, expectedCapture);
+      if (Array.isArray(store)) {
+        eq.strictEqual(actualResult, store);
+        eq(actualResult, expectedCapture);
+      }
+    }
+  },
+
+
 };
+
+
+tu.capture.store = false;
 
 
 export default tu;

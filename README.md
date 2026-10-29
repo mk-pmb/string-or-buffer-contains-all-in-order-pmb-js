@@ -93,6 +93,31 @@ Result will be boolean except when using `captureIndexes` (see below).
 
 
 
+### .mustBeFinNum(n, what)
+
+A little helper for throwing a RangeError complaining about `what`
+(a human-readable description of `n`) if `n` is not a finite number.
+
+
+
+### .robustSliceEquals(haystack, offset, exLen, expect)
+
+Return whether the `haystack` (string or buffer),
+when read starting at `offset`, has data `expect`.
+`exLen` must be the length of `expect`.
+`expect` is expected to be the same type as `haystack`.
+
+
+
+### .readWildcards(input, patternParts)
+
+If `input` (haystack) contains all the `patternParts` (needles),
+report an array of gaps, i.e. what data has been skipped between
+the `patternParts`.
+Otherwise (i.e. if some pattern part was missing), return `false`.
+
+
+
 Usage
 -----
 
