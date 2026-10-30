@@ -134,7 +134,7 @@ Object.assign(EX, {
   robustSliceEquals(haystack, offset, exLen, expect) {
     const actual = haystack.slice?.(offset, offset + exLen);
     if (actual === expect) { return true; }
-    if (actual.substr && expect.substr) { return (actual === expect); }
+    if (actual?.substr && expect?.substr) { return (actual === expect); }
     if (actual) {
       if (expect.equals?.call) { return expect.equals(actual); }
       if (actual.equals?.call) { return actual.equals(expect); }
